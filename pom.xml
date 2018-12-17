@@ -25,6 +25,7 @@
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <mybatis.generator>1.3.7</mybatis.generator>
+        <lucene.version>7.6.0</lucene.version>
 
 
     </properties>
@@ -183,31 +184,31 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>7.6.0</version>
+            <version>${lucene.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queryparser</artifactId>
-            <version>7.6.0</version>
+            <version>${lucene.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-highlighter -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
-            <version>7.6.0</version>
+            <version>${lucene.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
-            <version>7.6.0</version>
+            <version>${lucene.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queries -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queries</artifactId>
-            <version>7.6.0</version>
+            <version>${lucene.version}</version>
         </dependency>
 
 

@@ -13,16 +13,16 @@
     <classPathEntry location="${jdbc.driver.path}"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
-        <property name="suppressTypeWarnings" value="true" />
+        <property name="suppressTypeWarnings" value="true"/>
 
         <!-- generate entity时，生成hashcode和equals方法 -->
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
         <!-- generate entity时，生成serialVersionUID -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 这个插件只会增加字符串字段映射到一个JDBC字符的方法 -->
-        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
         <!-- genenat entity时,生成toString -->
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
         <!--关闭注释 -->
         <commentGenerator>
@@ -46,12 +46,21 @@
         </sqlMapGenerator>
 
         <!-- 生成的Dao接口 的包路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="${target.mapper.package}" targetProject="${target.project}">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${target.mapper.package}"
+                             targetProject="${target.project}">
             <property name="enableSubPackages" value="ture"/>
         </javaClientGenerator>
 
         <!--对应数据库表名，多个表，请复制指定 -->
-        <table schema="demo"  tableName="data_source" domainObjectName="DataSource"
+        <!--<table schema="demo"  tableName="data_source" domainObjectName="DataSource"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true"-->
+        <!--selectByExampleQueryId="true">-->
+        <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
+        <table schema="demo" tableName="text" domainObjectName="Text"
                enableCountByExample="false"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
@@ -59,7 +68,6 @@
                selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false"/>
         </table>
-
 
     </context>
 </generatorConfiguration>

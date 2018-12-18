@@ -14,7 +14,13 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Scorer;
+import org.apache.lucene.search.highlight.Formatter;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.QueryScorer;
+import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,22 +29,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/simple/mysql/")
 public class MysqlLucene {
     @Autowired
     TextMapper textMapper;
 
-    @RequestMapping("/aa")
+    //  创建索引
+    @RequestMapping("/create")
     public void mysqlAlay() throws IOException {
         List<Text> texts = allText();
         Analyzer analyzer = new StandardAnalyzer();
-        Directory index = new RAMDirectory();
+        Path path = null;
+        path = Paths.get("E:\\index\\");
+        Directory index = FSDirectory.open(path);
+//        Directory index = new RAMDirectory();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
+//        config.set
         IndexWriter writer = new IndexWriter(index, config);
-        for (Text text : texts){
+        for (Text text : texts) {
             Document doc = new Document();
             doc.add(new TextField("title", text.getTitle(), Field.Store.YES));
             doc.add(new TextField("context", text.getContext(), Field.Store.YES));
@@ -46,19 +60,27 @@ public class MysqlLucene {
         }
         writer.close();
     }
-    @RequestMapping("/bb")
+
+    //    根据索引查询信息
+    @RequestMapping("/select")
     public void select(HttpServletRequest request) throws IOException, ParseException {
-        String xxx = request.getParameter("name");
+        String xxx = request.getParameter("title");
+        String yyy = request.getParameter("context");
         List<Text> texts = allText();
         Analyzer analyzer = new StandardAnalyzer();
-        Query query = new QueryParser("name", analyzer).parse(xxx);
-        Directory index = new RAMDirectory();
+//        Query query = new QueryParser("context", analyzer).parse(xxx);
+//        多条件语法解析器
+        QueryParser queryParser = new QueryParser("*", analyzer);
+        Query query = queryParser.parse("title:" + xxx + "OR context:" + yyy);
+        Directory index = FSDirectory.open(Paths.get("E:\\index\\"));
+//        Directory index = new RAMDirectory();
         IndexReader reader = DirectoryReader.open(index);
         IndexSearcher searcher = new IndexSearcher(reader);
-        int numberPerPage = 2;
+        int numberPerPage = 10;
 
         ScoreDoc[] hits = searcher.search(query, numberPerPage).scoreDocs;
         for (int i = 0; i < hits.length; ++i) {
+            Document doc = searcher.doc(hits[i].doc);
             ScoreDoc scoreDoc = hits[i];
             int docId = scoreDoc.doc;
             Document d = searcher.doc(docId);
@@ -71,82 +93,10 @@ public class MysqlLucene {
             System.out.println();
         }
     }
-
 
 
     private List<Text> allText() {
-        return textMapper.selectByExample(new TextExample());
+        return textMapper.selectByExampleWithBLOBs(new TextExample());
     }
 
-    public static Directory createSimpleIndex(Analyzer analyzer, List<String> products) throws IOException {
-        Directory index = new RAMDirectory();
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
-        IndexWriter writer = new IndexWriter(index, config);
-
-        for (String name : products) {
-            addDoc(writer, name);
-        }
-        writer.close();
-        return index;
-    }
-
-    private static void addDoc(IndexWriter w, String name) throws IOException {
-        Document doc = new Document();
-        doc.add(new TextField("name", name, Field.Store.YES));
-        w.addDocument(doc);
-    }
-
-    private static void showSearchResults(IndexSearcher searcher, ScoreDoc[] hits, Query query, Analyzer analyzer)
-            throws Exception {
-        System.out.println("找到 " + hits.length + " 个命中.");
-        System.out.println("序号\t匹配度得分\t结果");
-        for (int i = 0; i < hits.length; ++i) {
-            ScoreDoc scoreDoc = hits[i];
-            int docId = scoreDoc.doc;
-            Document d = searcher.doc(docId);
-            List<IndexableField> fields = d.getFields();
-            System.out.print((i + 1));
-            System.out.print("\t" + scoreDoc.score);
-            for (IndexableField f : fields) {
-                System.out.print("\t" + d.get(f.name()));
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) throws Exception {
-        // 1. 准备中文分词器
-        Analyzer analyzer = new StandardAnalyzer();
-
-        // 2. 索引
-        List<String> productNames = new ArrayList<>();
-        productNames.add("飞利浦led灯泡e27螺口暖白球泡灯家用照明超亮节能灯泡转色温灯泡");
-        productNames.add("飞利浦led灯泡e14螺口蜡烛灯泡3W尖泡拉尾节能灯泡暖黄光源Lamp");
-        productNames.add("雷士照明 LED灯泡 e27大螺口节能灯3W球泡灯 Lamp led节能灯泡");
-        productNames.add("飞利浦 led灯泡 e27螺口家用3w暖白球泡灯节能灯5W灯泡LED单灯7w");
-        productNames.add("飞利浦led小球泡e14螺口4.5w透明款led节能灯泡照明光源lamp单灯");
-        productNames.add("飞利浦蒲公英护眼台灯工作学习阅读节能灯具30508带光源");
-        productNames.add("欧普照明led灯泡蜡烛节能灯泡e14螺口球泡灯超亮照明单灯光源");
-        productNames.add("欧普照明led灯泡节能灯泡超亮光源e14e27螺旋螺口小球泡暖黄家用");
-        productNames.add("聚欧普照明led灯泡节能灯泡e27螺口球泡家用led照明单灯超亮光源");
-        Directory index = createSimpleIndex(analyzer, productNames);
-        System.out.println(index.toString());
-        // 3. 查询器
-        String keyword = "护眼";
-//        String keyword = "护眼带光源";
-        Query query = new QueryParser("name", analyzer).parse(keyword);
-
-        // 4. 搜索
-        IndexReader reader = DirectoryReader.open(index);
-        IndexSearcher searcher = new IndexSearcher(reader);
-        int numberPerPage = 2;
-        System.out.printf("当前一共有%d条数据%n", productNames.size());
-        System.out.printf("查询关键字是：\"%s\"%n", keyword);
-        ScoreDoc[] hits = searcher.search(query, numberPerPage).scoreDocs;
-
-        // 5. 显示查询结果
-        showSearchResults(searcher, hits, query, analyzer);
-        // 6. 关闭查询
-        reader.close();
-    }
 }

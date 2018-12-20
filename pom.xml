@@ -179,7 +179,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        <!--lucene 组建-->
+        <!--cc.lucene 组建-->
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
@@ -210,12 +210,19 @@
             <artifactId>lucene-queries</artifactId>
             <version>${lucene.version}</version>
         </dependency>
-        <!--shiro 组件-->
+        <!--cc.shiro 组件-->
         <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>${shiro.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+
         </dependency>
 
     </dependencies>
@@ -229,7 +236,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.properties</include>
-                    <include>shiro/*.properties</include>
+                    <include>cc.shiro/*.properties</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
@@ -243,8 +250,8 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>demo/persistence/mapping/*.xml</include>
-                    <include>lucene/persistence/mapping/*.xml</include>
+                    <include>cc.demo/persistence/mapping/*.xml</include>
+                    <include>cc.lucene/persistence/mapping/*.xml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

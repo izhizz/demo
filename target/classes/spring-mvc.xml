@@ -10,8 +10,8 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="demo.*"/>
-    <context:component-scan base-package="lucene.*"/>
+    <context:component-scan base-package="cc.demo.*"/>
+    <context:component-scan base-package="cc.lucene.*"/>
 
     <mvc:annotation-driven/><!--静态资源访问-->
 

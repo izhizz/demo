@@ -60,7 +60,7 @@
         <!--selectByExampleQueryId="true">-->
         <!--<property name="useActualColumnNames" value="false"/>-->
         <!--</table>-->
-        <table schema="demo" tableName="text" domainObjectName="Text"
+        <table schema="cc.demo" tableName="text" domainObjectName="Text"
                enableCountByExample="false"
                enableUpdateByExample="true"
                enableDeleteByExample="true"

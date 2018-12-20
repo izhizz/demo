@@ -1,4 +1,4 @@
-package lucene.persistence.entity;
+package cc.lucene.persistence.entity;
 
 import java.io.Serializable;
 

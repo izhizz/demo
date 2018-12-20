@@ -1,8 +1,8 @@
-package lucene.utils;
+package cc.lucene.utils;
 
-import lucene.persistence.dao.TextMapper;
-import lucene.persistence.entity.Text;
-import lucene.persistence.entity.TextExample;
+import cc.lucene.persistence.dao.TextMapper;
+import cc.lucene.persistence.entity.Text;
+import cc.lucene.persistence.entity.TextExample;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -14,24 +14,16 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.Scorer;
-import org.apache.lucene.search.highlight.Formatter;
-import org.apache.lucene.search.highlight.Highlighter;
-import org.apache.lucene.search.highlight.QueryScorer;
-import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.store.RAMDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -93,7 +85,6 @@ public class MysqlLucene {
             System.out.println();
         }
     }
-
 
     private List<Text> allText() {
         return textMapper.selectByExampleWithBLOBs(new TextExample());

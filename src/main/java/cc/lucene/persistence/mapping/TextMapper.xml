@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="lucene.persistence.dao.TextMapper">
-  <resultMap id="BaseResultMap" type="lucene.persistence.entity.Text">
+<mapper namespace="cc.lucene.persistence.dao.TextMapper">
+  <resultMap id="BaseResultMap" type="cc.lucene.persistence.entity.Text">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="lucene.persistence.entity.Text">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cc.lucene.persistence.entity.Text">
     <result column="context" jdbcType="LONGVARCHAR" property="context" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     context
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="lucene.persistence.entity.TextExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="cc.lucene.persistence.entity.TextExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -89,7 +89,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="lucene.persistence.entity.TextExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cc.lucene.persistence.entity.TextExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -116,19 +116,19 @@
     delete from text
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="lucene.persistence.entity.TextExample">
+  <delete id="deleteByExample" parameterType="cc.lucene.persistence.entity.TextExample">
     delete from text
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="lucene.persistence.entity.Text">
+  <insert id="insert" parameterType="cc.lucene.persistence.entity.Text">
     insert into text (id, title, context
       )
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{context,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="lucene.persistence.entity.Text">
+  <insert id="insertSelective" parameterType="cc.lucene.persistence.entity.Text">
     insert into text
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -187,7 +187,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="lucene.persistence.entity.Text">
+  <update id="updateByPrimaryKeySelective" parameterType="cc.lucene.persistence.entity.Text">
     update text
     <set>
       <if test="title != null">
@@ -199,13 +199,13 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="lucene.persistence.entity.Text">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cc.lucene.persistence.entity.Text">
     update text
     set title = #{title,jdbcType=VARCHAR},
       context = #{context,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="lucene.persistence.entity.Text">
+  <update id="updateByPrimaryKey" parameterType="cc.lucene.persistence.entity.Text">
     update text
     set title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

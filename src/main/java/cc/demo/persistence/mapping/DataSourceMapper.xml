@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="demo.persistence.dao.DataSourceMapper">
-  <resultMap id="BaseResultMap" type="demo.persistence.entity.DataSource">
+<mapper namespace="cc.demo.persistence.dao.DataSourceMapper">
+  <resultMap id="BaseResultMap" type="cc.demo.persistence.entity.DataSource">
     <id column="id" jdbcType="INTEGER" property="id" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
   <sql id="Base_Column_List">
     id
   </sql>
-  <select id="selectByExample" parameterType="demo.persistence.entity.DataSourceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cc.demo.persistence.entity.DataSourceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -84,17 +84,17 @@
     delete from data_source
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="demo.persistence.entity.DataSourceExample">
+  <delete id="deleteByExample" parameterType="cc.demo.persistence.entity.DataSourceExample">
     delete from data_source
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="demo.persistence.entity.DataSource">
+  <insert id="insert" parameterType="cc.demo.persistence.entity.DataSource">
     insert into data_source (id)
     values (#{id,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="demo.persistence.entity.DataSource">
+  <insert id="insertSelective" parameterType="cc.demo.persistence.entity.DataSource">
     insert into data_source
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

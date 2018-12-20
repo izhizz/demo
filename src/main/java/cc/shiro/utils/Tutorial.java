@@ -1,12 +1,5 @@
-package shiro.utils;
+package cc.shiro.utils;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.Assert;
-import org.apache.shiro.util.Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +9,7 @@ public class Tutorial {
     public static void main(String[] args) {
 //        log.info("My First Apache Shiro Application");
 //        System.exit(0);
-//        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+//        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:cc.shiro.ini");
 //        //2、得到SecurityManager实例 并绑定给SecurityUtils
 //        SecurityManager securityManager = factory.getInstance();
 //        SecurityUtils.setSecurityManager(securityManager);

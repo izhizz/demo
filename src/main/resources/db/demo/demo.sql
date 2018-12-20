@@ -1,8 +1,9 @@
 /*
 SQLyog Ultimate v11.24 (32 bit)
-MySQL - 5.7.22-log : Database - demo
+MySQL - 5.7.22-log : Database - cc.demo
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -12,9 +13,9 @@ MySQL - 5.7.22-log : Database - demo
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`demo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`cc.demo` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `demo`;
+USE `cc.demo`;
 
 /*Table structure for table `data_source` */
 

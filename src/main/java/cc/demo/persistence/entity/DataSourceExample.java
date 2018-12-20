@@ -1,4 +1,4 @@
-package demo.persistence.entity;
+package cc.demo.persistence.entity;
 
 import java.util.ArrayList;
 import java.util.List;

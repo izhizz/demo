@@ -1,4 +1,4 @@
-package demo.persistence.entity;
+package cc.demo.persistence.entity;
 
 import java.io.Serializable;
 

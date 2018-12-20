@@ -1,4 +1,4 @@
-package demo.utils;
+package cc.demo.utils;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;

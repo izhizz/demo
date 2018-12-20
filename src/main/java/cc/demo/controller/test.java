@@ -1,8 +1,8 @@
-package demo.controller;
+package cc.demo.controller;
 
-import demo.persistence.dao.DataSourceMapper;
-import demo.persistence.entity.DataSource;
-import demo.persistence.entity.DataSourceExample;
+import cc.demo.persistence.dao.DataSourceMapper;
+import cc.demo.persistence.entity.DataSource;
+import cc.demo.persistence.entity.DataSourceExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

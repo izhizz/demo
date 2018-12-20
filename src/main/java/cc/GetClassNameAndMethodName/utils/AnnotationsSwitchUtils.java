@@ -1,4 +1,4 @@
-package cc.demo.utils;
+package cc.GetClassNameAndMethodName.utils;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 

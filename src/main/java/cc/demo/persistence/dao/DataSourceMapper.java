@@ -1,7 +1,7 @@
-package demo.persistence.dao;
+package cc.demo.persistence.dao;
 
-import demo.persistence.entity.DataSource;
-import demo.persistence.entity.DataSourceExample;
+import cc.demo.persistence.entity.DataSource;
+import cc.demo.persistence.entity.DataSourceExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,4 +1,4 @@
-package GetClassNameAndMethodName.utils;
+package cc.GetClassNameAndMethodName.utils;
 
 public class commons {
 }

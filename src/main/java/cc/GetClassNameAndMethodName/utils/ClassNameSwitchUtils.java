@@ -1,7 +1,4 @@
-package cc.demo.utils;
-
-import org.apache.lucene.queryparser.surround.query.SrndTermQuery;
-import org.springframework.web.bind.annotation.RequestMapping;
+package cc.GetClassNameAndMethodName.utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

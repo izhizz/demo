@@ -1,4 +1,4 @@
-package lucene.utils;
+package cc.lucene.utils;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;

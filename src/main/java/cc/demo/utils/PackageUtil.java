@@ -1,4 +1,4 @@
-package demo.utils;
+package cc.demo.utils;
 
 import org.springframework.util.StringUtils;
 
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PackageUtil {
-    public static void scan(String packageName ,List<Class<?>> list) throws Exception{
+    public static void scan(String packageName ,List<Class<?>> list){
 
         String path=getSrcPath()+packageToDir(packageName);
         File dir=new File(path);
@@ -19,6 +19,7 @@ public class PackageUtil {
         Class<?> cla=null;
         for(File f:files){
             if(f.isDirectory()){
+//                过滤掉实体类的包
                 if (packageName.contains("persistence")){
                     continue;
                 }
@@ -39,7 +40,7 @@ public class PackageUtil {
     /**
      获取当前路径
      */
-    public static String getSrcPath() throws IOException{
+    public static String getSrcPath(){
         String path = PackageUtil.class.getClassLoader().getResource("").getPath().substring(1);
 
 //        String path1 = (String) classLoader
@@ -63,40 +64,11 @@ public class PackageUtil {
         }
         return sb.toString();
     }
+
+
+
     public static void main(String[] args) throws Exception {
-        List<Class<?>> list=new ArrayList<Class<?>>();
-        scan("demo",list);//把这个对象的路径写入，就可以了。
-//        scan("src.main.java.demo",list);//把这个对象的路径写入，就可以了。
-        System.out.println(list.size());
-        for(Class<?> cla:list){
-            String className = cla.getName();
-            if (className.contains("$")){
-                continue;
-            }
-            Map<String,Integer> classMap = new HashMap<>();
-            Method[] methods = cla.getMethods();
-            for (Method  method : methods){
-                if("getClass".equals(method.getName())){
-                 continue;
-                }else if("wait".equals(method.getName())){
-                    continue;
-                }if("hashCode".equals(method.getName())){
-                    continue;
-                }if("equals".equals(method.getName())){
-                    continue;
-                }if("notifyAll".equals(method.getName())){
-                    continue;
-                }if("toString".equals(method.getName())){
-                    continue;
-                }if("notify".equals(method.getName())){
-                    continue;
-                }
-                classMap.put(method.getName(),1);
-            }
-            ClassNameSwitchUtils.controllerPathSwichMap.put(className,classMap);
-
-
-        }
+        ClassNameSwitchUtils.initialize();
         for (Map.Entry<String,Map<String,Integer>> entry : ClassNameSwitchUtils.controllerPathSwichMap.entrySet()){
 
             System.out.println( entry.getKey());

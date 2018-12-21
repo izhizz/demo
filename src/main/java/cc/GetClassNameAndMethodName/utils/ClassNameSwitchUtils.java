@@ -101,4 +101,24 @@ public class ClassNameSwitchUtils {
         return 0;
     }
 
+    //    一键设置开关日志信息
+    public static Integer setAllSwitch(String className, String menthod, Integer switchValue) {
+        if (UP.equals(switchValue)) {
+            setSwitch(UP);
+            return 1;
+        } else if (DOWN.equals(switchValue)) {
+            setSwitch(DOWN);
+            return 1;
+        }
+        return 0;
+    }
+
+//    批量设置key值
+    private static void setSwitch(Integer switchaa) {
+        for (Map.Entry<String, Map<String, Integer>> entry : controllerPathSwichMap.entrySet()) {
+            for (Map.Entry<String, Integer> data : entry.getValue().entrySet()) {
+                data.setValue(switchaa);
+            }
+        }
+    }
 }

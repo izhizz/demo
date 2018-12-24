@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="smartRing:war">
-    <output-path>$PROJECT_DIR$/../smartRing/target</output-path>
-    <root id="archive" name="smartRing.war">
-      <element id="artifact" artifact-name="smartRing:war exploded" />
-    </root>
-  </artifact>
-</component>

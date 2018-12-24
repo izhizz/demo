@@ -1,10 +1,12 @@
 package cc.GetClassNameAndMethodName.utils;
 
+import java.io.*;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * 方法中的任何含有输出方法
@@ -44,10 +46,57 @@ public class ClassNameSwitchUtils {
 
     }
 
+    //    输出形式以文件格式
+    public static void outFileLog(String name, String content) {
+//        如果是多数据源的话
+//        String dbKey = DataSourceUtils.getDbKey();
+//        if (!StringUtils.isEmpty(dbKey)) {
+//            dbKey = dbKey + "/";
+//        } else {
+//            dbKey = "";
+//        }
+        String path = "";
+//        String time = ConstantUtil.longToDate(ConstantUtil.getTimesZeroStamp(), "yyyy-MM-dd");
+//        if (getOfficeHome().contains("Windows")) {
+//            path = "E:/file/" + dbKey + time + "/";
+//        } else if (getOfficeHome().contains("Windows")) {
+//            path = "/opt/file/" + dbKey + time + "/";
+//        }
+        if (getOfficeHome().contains("Windows")) {
+            path = "E:/file/";
+        } else if (getOfficeHome().contains("Windows")) {
+            path = "/opt/file/";
+        }
+        BufferedWriter out = null;
+        try {
+
+            File file = new File(path + name + ".text");
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            out = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(path + name + ".text", true)));
+            out.write(content + "\r\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     //初始化所有的打印日志信息
     public static void initialize() {
         List<Class<?>> list = new ArrayList<Class<?>>();
-        PackageUtil.scan("cc", list);//把这个对象的路径写入，就可以了。
+        PackageUtil.scan("com.wulianedu", list);//把这个对象的路径写入，就可以了。
 //        scan("src.main.java.cc.demo",list);//把这个对象的路径写入，就可以了。
         System.out.println(list.size());
         for (Class<?> cla : list) {
@@ -56,7 +105,6 @@ public class ClassNameSwitchUtils {
             if (className.contains("$")) {
                 continue;
             }
-
             Map<String, Integer> classMap = new HashMap<>();
             Method[] methods = cla.getDeclaredMethods();
             for (Method method : methods) {
@@ -90,7 +138,7 @@ public class ClassNameSwitchUtils {
     }
 
     //    设置开关日志信息
-    public static Integer setSwitch(String className,String menthod,Integer switchValue) {
+    public static Integer setSwitch(String className, String menthod, Integer switchValue) {
         if (UP.equals(switchValue)) {
             controllerPathSwichMap.get(className).put(menthod, switchValue);
             return 1;
@@ -113,7 +161,7 @@ public class ClassNameSwitchUtils {
         return 0;
     }
 
-//    批量设置key值
+    //    批量设置key值
     private static void setSwitch(Integer switchaa) {
         for (Map.Entry<String, Map<String, Integer>> entry : controllerPathSwichMap.entrySet()) {
             for (Map.Entry<String, Integer> data : entry.getValue().entrySet()) {
@@ -121,4 +169,21 @@ public class ClassNameSwitchUtils {
             }
         }
     }
+
+
+    private static String getOfficeHome() {
+
+        String osName = System.getProperty("os.name");//获取指定键（即os.name）的系统属性,如：Windows 7。
+        String OSname = null;
+        if (Pattern.matches("Linux.*", osName)) {
+            OSname = "Linux";
+        } else if (Pattern.matches("Windows.*", osName)) {
+            OSname = "Windows";
+        } else if (Pattern.matches("Mac.*", osName)) {
+            OSname = "Mac";
+        }
+        return OSname;
+
+    }
+
 }

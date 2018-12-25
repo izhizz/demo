@@ -8,4 +8,5 @@
 
 
     <import resource="application-mybatis.xml"/>
+    <import resource="rabbitMq/application-rabbit.xml"/>
 </beans>

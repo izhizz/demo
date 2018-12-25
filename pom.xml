@@ -217,12 +217,28 @@
             <artifactId>shiro-core</artifactId>
             <version>${shiro.version}</version>
         </dependency>
+
+
+
+        <!--rabbitMq-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>1.4.5.RELEASE</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-
         </dependency>
 
         <dependency>
@@ -250,6 +266,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.xml</include>
+                    <include>rabbitMq/*.xml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

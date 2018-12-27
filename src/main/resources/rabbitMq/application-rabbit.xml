@@ -14,18 +14,23 @@
     <rabbit:template id="amqpTemplate" exchange="test_rmq_exchange" connection-factory="connectionFactory"  />
     <!--创建队列queue，路由exchange及绑定binding关系-->
     <rabbit:queue id="test_queue_id" name="test_queue" durable="true" auto-delete="false" exclusive="false" />
+    <!--<rabbit:queue id="test_queue_id2" name="test_queue2" durable="true" auto-delete="false" exclusive="false" />-->
+
     <rabbit:topic-exchange name="test_rmq_exchange" durable="true" auto-delete="false">
         <rabbit:bindings>
             <rabbit:binding queue="test_queue" pattern="test_queue_patt"/>
+            <!--<rabbit:binding queue="test_queue2" pattern="test_queue_patt2"/>-->
         </rabbit:bindings>
     </rabbit:topic-exchange>
 
     <!-- 消费者 -->
-    <bean name="RabbitmqConsumer" class="cc.rabbit.controller.RabbitmqConsumer"/>
+    <bean name="RabbitmqConsumer" class="cc.rabbit.controller.pointToPoint.RabbitmqConsumer"/>
+    <!--<bean name="RabbitMqConsumer2" class="cc.rabbit.controller.pointToPoint.RabbitMqConsumer2"/>-->
 
     <!-- 配置监听 -->
     <rabbit:listener-container connection-factory="connectionFactory">
         <rabbit:listener queues="test_queue_id" ref="RabbitmqConsumer"/>
+        <!--<rabbit:listener queues="test_queue_id2" ref="RabbitMqConsumer2"/>-->
     </rabbit:listener-container>
 
 

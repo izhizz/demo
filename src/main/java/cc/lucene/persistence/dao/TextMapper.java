@@ -1,8 +1,8 @@
 package cc.lucene.persistence.dao;
 
-import java.util.List;
 import cc.lucene.persistence.entity.Text;
 import cc.lucene.persistence.entity.TextExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TextMapper {

@@ -1,0 +1,145 @@
+== Resources
+=== UserApi
+:hardbreaks:
+用户基本信息操作API
+
+==== /getUser
+----
+GET /user/getUser
+----
+
+===== Description
+:hardbreaks:
+根据姓名查询用户信息 
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|QueryParameter|name|name|true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|<<User>>
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+===== Example CURL request
+:hardbreaks:
+[source,bash]
+----
+$ curl 'http://localhost:8080/user/getUser?name=FLY' -i -H 'Accept: application/json'
+----
+
+===== Example HTTP request
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+GET /user/getUser?name=FLY HTTP/1.1
+Accept: application/json
+Host: localhost:8080
+
+----
+
+===== Example HTTP response
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 113
+
+{
+  "id" : 123456789,
+  "name" : "FLY",
+  "age" : 27,
+  "sex" : "男",
+  "address" : "重庆沙坪坝区"
+}
+----
+
+==== /addUser
+----
+POST /user/addUser
+----
+
+===== Description
+:hardbreaks:
+添加一个用户
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|BodyParameter|user|user|true|<<User>>|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|<<User>>
+|201|Created|No Content
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+===== Example CURL request
+:hardbreaks:
+[source,bash]
+----
+$ curl 'http://localhost:8080/user/addUser' -i -X POST -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json' -d '{"address":"河南郑州","age":25,"id":123456,"name":"FLY","sex":"男"}'
+----
+
+===== Example HTTP request
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+POST /user/addUser HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080
+Content-Length: 72
+
+{"address":"河南郑州","age":25,"id":123456,"name":"FLY","sex":"男"}
+----
+
+===== Example HTTP response
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 104
+
+{
+  "id" : 123456,
+  "name" : "FLY",
+  "age" : 25,
+  "sex" : "男",
+  "address" : "河南郑州"
+}
+----
+

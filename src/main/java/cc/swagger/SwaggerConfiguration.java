@@ -56,7 +56,4 @@ public class SwaggerConfiguration {
 
     }
 
-    SwaggerConfiguration(){
-        System.out.println("aaa");
-    }
 }

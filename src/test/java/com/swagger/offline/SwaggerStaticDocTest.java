@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.ManualRestDocumentation;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
-import org.springframework.restdocs.operation.preprocess.OperationResponsePreprocessor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -37,9 +36,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Title:
  * @ClassName: SwaggerStaticDocTest.java
  * @Description:
- * @Copyright 2016-2018  - Powered By 研发中心
- * @author: 王延飞
- * @date: 2018-01-22 16:06
+ * @Copyright
+ * @author: ff
+ * @date:  2019/1/11
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -59,23 +58,15 @@ public  class SwaggerStaticDocTest  {
 
     @Before
     public void setup() {
-
-
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
                 .apply(MockMvcRestDocumentation.documentationConfiguration(this.restDocumentation2)).build();
+//        当前类的class 及 运行的方法
         restDocumentation2.beforeTest(SwaggerStaticDocTest.class,"TestApi");
-//        restDocumentation.beforeOperation();
-//        ManualRestDocumentation
     }
-
-
-
-
 //
     @Test
     public void Test() throws Exception {
         // 得到swagger.json,写入outputDir目录中
-        System.out.println("Bbbbbb");
         mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))
                 .andDo(SwaggerResultHandler.outputDirectory(outputDir).build())
                 .andExpect(status().isOk())
@@ -93,14 +84,13 @@ public  class SwaggerStaticDocTest  {
 
     @Test
     public void TestApi() throws Exception {
-        System.out.println("aaaaaa");
+//        访问接口
         MockHttpServletRequestBuilder accept = get("/userInfo/selectContacts")
-                .param("name", "FLY")
-                .accept(MediaType.APPLICATION_JSON);
-        OperationResponsePreprocessor operationResponsePreprocessor = preprocessResponse(prettyPrint());
+                .param("name", "FLY")//参数
+                .accept(MediaType.APPLICATION_JSON);//返回类型
         mockMvc.perform(accept)
-                .andExpect(status().isOk())
-//                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())//判断是否成功
+//                .andDo(MockMvcResultHandlers.print()) //打印详细信息
                 .andDo(MockMvcRestDocumentation
                         .document("selectContacts"));
 //                .andDo(selectContacts);

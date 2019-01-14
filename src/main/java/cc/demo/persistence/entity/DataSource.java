@@ -1,8 +1,12 @@
 package cc.demo.persistence.entity;
 
-import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+@ApiModel(value="user对象",description="用户对象user")
 public class DataSource implements Serializable {
+    @ApiModelProperty(value="id",hidden=false)
     private Integer id;
 
     private static final long serialVersionUID = 1L;

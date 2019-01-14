@@ -27,6 +27,11 @@
         <mybatis.generator>1.3.7</mybatis.generator>
         <lucene.version>7.6.0</lucene.version>
         <shiro.version>1.3.2</shiro.version>
+
+        <jedis.version>2.9.0</jedis.version>
+        <redis.version>1.8.8.RELEASE</redis.version>
+
+
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
 
         <asciidoctor.input.directory>${project.basedir}/docs/asciidoc</asciidoctor.input.directory>
@@ -240,7 +245,6 @@
         </dependency>
 
 
-
         <!--rabbitMq-->
         <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
         <dependency>
@@ -264,9 +268,9 @@
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <!--<dependency>-->
-            <!--<groupId>javax.servlet</groupId>-->
-            <!--<artifactId>javax.servlet-api</artifactId>-->
-            <!--<version>3.1.0</version>-->
+        <!--<groupId>javax.servlet</groupId>-->
+        <!--<artifactId>javax.servlet-api</artifactId>-->
+        <!--<version>3.1.0</version>-->
         <!--</dependency>-->
 
         <dependency>
@@ -300,28 +304,18 @@
             <version>2.6.1</version>
         </dependency>
 
-        <!--离线文档-->
+        <!-- jedis-->
         <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <scope>test</scope>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
-        <!--springfox-staticdocs 生成静态文档-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-staticdocs</artifactId>
-            <version>2.6.1</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${redis.version}</version>
         </dependency>
 
-
-
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.restdocs</groupId>-->
-            <!--<artifactId>spring-restdocs-mockmvc</artifactId>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -333,9 +327,8 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.properties</include>
-                    <include>cc.shiro/*.properties</include>
                 </includes>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
@@ -343,7 +336,7 @@
                     <include>*.xml</include>
                     <include>rabbitMq/*.xml</include>
                 </includes>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/java</directory>
@@ -351,12 +344,14 @@
                     <include>cc.demo/persistence/mapping/*.xml</include>
                     <include>cc.lucene/persistence/mapping/*.xml</include>
                 </includes>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
 
         </resources>
 
         <plugins>
+
+
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -388,6 +383,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+
+
             <!-- Run the generated asciidoc through Asciidoctor to generate
                  other documentation types, such as PDFs or HTML5 -->
             <!--通过Asciidoctor使得asciidoc生成其他的文档格式，例如：PDF 或者HTML5-->
@@ -457,13 +454,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-
-
-
-
-
 
 
         </plugins>

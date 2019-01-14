@@ -1,18 +1,14 @@
 package cc.demo.controller;
 
-import cc.demo.persistence.dao.DataSourceMapper;
-import cc.demo.persistence.entity.DataSource;
-import cc.demo.persistence.entity.DataSourceExample;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.List;
-
+@ApiIgnore()
 @Controller
 @RequestMapping("/test")
 @Api(value = "test")
@@ -20,13 +16,13 @@ public class test {
 //    @Autowired
 //    DataSourceMapper dataSourceMapper;
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String xxx(){
 //        List<DataSource> dataSources = dataSourceMapper.selectByExample(new DataSourceExample());
         return "login";
     }
 
-    @RequestMapping("/register")
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "测试",httpMethod = "GET")
     public String yyy(){

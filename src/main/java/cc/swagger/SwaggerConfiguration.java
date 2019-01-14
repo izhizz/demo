@@ -1,6 +1,7 @@
 package cc.swagger;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,13 +18,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Title: Swagger配置类
  * @ClassName: com.newcapec.config.swagger.Swagger2Configuration.java
  * @Description:
- * @Copyright 2016-2017  - Powered By 研发中心
- * @author: 王延飞
- * @date:2017-12-11 8:20
+ * @Copyright
+ * @author: ff
+ * @date:2019
  */
 @EnableWebMvc
 @EnableSwagger2
 @Configuration
+@ComponentScan(basePackages = "cc.demo.controller")
 public class SwaggerConfiguration {
     @Bean
     public Docket buildDocket() {
@@ -32,6 +34,7 @@ public class SwaggerConfiguration {
                 .select()
                 //要扫描的API(Controller)基础包
                 .apis(RequestHandlerSelectors.basePackage("cc.demo.controller"))
+//                .paths(PathSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -42,15 +45,15 @@ public class SwaggerConfiguration {
      * @Title: 构建API基本信息
      * @methodName: buildApiInfo
      * @Description:
-     * @author: 王延飞
-     * @date: 2017-12-11  8:44
+     * @author: ff
+     * @date: 2019
      */
     private ApiInfo buildApiInfo() {
 
         return new ApiInfoBuilder()
                 .title("用户信息API文档")
                 .description("这里除了查看接口功能外，还提供了调试测试功能")
-                .contact("王延飞")
+                .contact("困死了")
                 .version("1.0")
                 .build();
 

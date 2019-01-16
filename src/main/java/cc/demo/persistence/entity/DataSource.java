@@ -2,12 +2,15 @@ package cc.demo.persistence.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
-@ApiModel(value="user对象",description="用户对象user")
+
+@ApiModel(value="cc.demo.persistence.entity.DataSource")
 public class DataSource implements Serializable {
-    @ApiModelProperty(value="id",hidden=false)
+    @ApiModelProperty(value="id恶趣味请问111")
     private Integer id;
+
+    @ApiModelProperty(value="name132456")
+    private String name;
 
     private static final long serialVersionUID = 1L;
 
@@ -17,6 +20,14 @@ public class DataSource implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     @Override
@@ -31,7 +42,8 @@ public class DataSource implements Serializable {
             return false;
         }
         DataSource other = (DataSource) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()));
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
     @Override
@@ -39,6 +51,7 @@ public class DataSource implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         return result;
     }
 
@@ -49,6 +62,7 @@ public class DataSource implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

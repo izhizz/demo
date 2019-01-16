@@ -16,7 +16,13 @@ public interface DataSourceMapper {
 
     List<DataSource> selectByExample(DataSourceExample example);
 
+    DataSource selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") DataSource record, @Param("example") DataSourceExample example);
 
     int updateByExample(@Param("record") DataSource record, @Param("example") DataSourceExample example);
+
+    int updateByPrimaryKeySelective(DataSource record);
+
+    int updateByPrimaryKey(DataSource record);
 }

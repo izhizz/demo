@@ -30,10 +30,11 @@ public class SwaggerConfiguration {
     @Bean
     public Docket buildDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(buildApiInfo())
+                .apiInfo(buildApiInfo()).forCodeGeneration(true)
                 .select()
                 //要扫描的API(Controller)基础包
                 .apis(RequestHandlerSelectors.basePackage("cc.demo.controller"))
+
 //                .paths(PathSelectors.any())
                 .paths(PathSelectors.any())
                 .build();

@@ -1,7 +1,6 @@
 package com.swagger.offline;
 
 import cc.demo.persistence.entity.DataSource;
-import com.alibaba.fastjson.JSON;
 import io.github.robwin.markup.builder.MarkupLanguage;
 import io.github.robwin.swagger2markup.GroupBy;
 import io.github.robwin.swagger2markup.Swagger2MarkupConverter;
@@ -97,8 +96,11 @@ public  class SwaggerStaticDocTest  {
 
 
         DataSource dataSource = new DataSource();
+        dataSource.setId(1);
+        dataSource.setName("2");
         mockMvc.perform(get("/userInfo/selectAllUsers").contentType(MediaType.APPLICATION_JSON)
-                .content(JSON.toJSONString(dataSource))
+//                .param("page","1").param("size","1") //参数请求
+//                .content(JSON.toJSONString(dataSource))//设置RequestBody请求
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(MockMvcRestDocumentation.document("selectAllUsers", preprocessResponse(prettyPrint())));

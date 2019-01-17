@@ -43,7 +43,6 @@ public class UserInfoController {
             @ApiImplicitParam(name = "page", value = "跳转到的页数", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "size", value = "每页展示的记录数", required = true, paramType = "query", dataType = "Integer")
     })
-
     public DataSource selectAllUsers1(Integer page, Integer size) {
         DataSource dataSource = new DataSource();
         return dataSource;

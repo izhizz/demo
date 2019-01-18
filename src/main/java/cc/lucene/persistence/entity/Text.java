@@ -1,12 +1,18 @@
 package cc.lucene.persistence.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="cc.lucene.persistence.entity.Text")
 public class Text implements Serializable {
+    @ApiModelProperty(value="id")
     private String id;
 
+    @ApiModelProperty(value="title")
     private String title;
 
+    @ApiModelProperty(value="context")
     private String context;
 
     private static final long serialVersionUID = 1L;

@@ -327,6 +327,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.properties</include>
+                    <include>redis/*.properties</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
@@ -341,8 +342,8 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>cc.demo/persistence/mapping/*.xml</include>
-                    <include>cc.lucene/persistence/mapping/*.xml</include>
+                    <include>cc/demo/persistence/mapping/*.xml</include>
+                    <include>cc/lucene/persistence/mapping/*.xml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

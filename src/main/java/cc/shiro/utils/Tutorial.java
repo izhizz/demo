@@ -3,6 +3,9 @@ package cc.shiro.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tutorial {
     private static final transient Logger log = LoggerFactory.getLogger(Tutorial.class);
 
@@ -28,6 +31,32 @@ public class Tutorial {
 //
 //        //6、退出
 //        subject.logout();
+
+
+//            String first = request.getParameter("first");
+//            String second = request.getParameter("second");
+//            String _max = request.getParameter("max");
+//            String third = request.getParameter("third");
+            String first = "2DPY";
+            String second = "15070300100000000";
+            String _max ="999";
+            String third = "1";
+
+            Integer max = Integer.parseInt(_max);
+            List<String> value = new ArrayList<>();
+            for (Integer i = 0; i < max; i++) {
+                int length = _max.length();
+                int i_length = i.toString().length();
+                String zero="";
+                for (int j=0;j<length-i_length;j++){
+                    zero+=0;
+                }
+
+                String aaa = first+"-"+second+zero+i+"-"+third;
+                System.out.println(aaa);
+            }
+
+
     }
 
 

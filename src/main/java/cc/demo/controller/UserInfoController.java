@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -20,6 +23,29 @@ import java.util.Map;
 @Api(value = "用户信息查询", description = "用户基本信息操作API", tags = "UserApi")
 public class UserInfoController {
     private Logger logger = LoggerFactory.getLogger(getClass());
+    @RequestMapping(value = "/wuliaomei", method = RequestMethod.POST)
+    public ResultEntity<DataSource> selectAllUsers1111(HttpServletRequest request) {
+        String first = request.getParameter("first");
+        String second = request.getParameter("second");
+        String _max = request.getParameter("max");
+        String third = request.getParameter("third");
+        Integer max = Integer.parseInt(_max);
+        List<String> value = new ArrayList<>();
+        for (Integer i = 0; i < max; i++) {
+            int length = _max.length();
+            int i_length = i.toString().length();
+            String zero="";
+            for (int j=0;j<length-i_length;j++){
+                zero+=0;
+            }
+
+            String aaa = first+"-"+second+zero+i+"-"+third;
+            value.add(aaa);
+
+        }
+        ResultEntity resultEntity = new ResultEntity(value);
+        return resultEntity;
+    }
 
     //    @ResponseBody
     @RequestMapping(value = "/selectAllUsers", method = RequestMethod.GET)
@@ -32,10 +58,11 @@ public class UserInfoController {
         DataSource dataSource = new DataSource();
         dataSource.setId(1);
         Map aa = new HashMap<>();
-        aa.put("d",dataSource);
+        aa.put("d", dataSource);
         ResultEntity<DataSource> resultEntity = new ResultEntity(aa); //A:
-        return  resultEntity;
+        return resultEntity;
     }
+
     @RequestMapping(value = "/selectAllUsers2", method = RequestMethod.GET)
     @ApiOperation(value = "/selectAllUsers2", notes = "查询所有的人员信息并分页展示")
 //    @ApiOperation(value = "查询所有的人员信息并分页展示", notes = "查询所有的人员信息并分页展示")

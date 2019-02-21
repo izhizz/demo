@@ -36,7 +36,15 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/index.jsp</location>
+        <location>/error404.jsp</location>
     </error-page>
-
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assets/*</url-pattern>
+        <url-pattern>/s/*</url-pattern>
+        <url-pattern>*.xml</url-pattern>
+        <url-pattern>*.txt</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
 </web-app>

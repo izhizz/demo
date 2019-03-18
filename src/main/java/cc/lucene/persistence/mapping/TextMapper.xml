@@ -210,4 +210,5 @@
     set title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>

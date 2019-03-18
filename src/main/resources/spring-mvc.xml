@@ -23,7 +23,20 @@
     <!--<mvc:exclude-mapping path="/swagger*/**"></mvc:exclude-mapping>-->
     <!--<mvc:exclude-mapping path="/v2/**"></mvc:exclude-mapping>-->
     <!--<mvc:exclude-mapping path="/webjars/**"></mvc:exclude-mapping>-->
-
+    <!--拦截器-->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/api/**"/>-->
+            <!--<mvc:exclude-mapping path="/login"/>-->
+            <!--<mvc:exclude-mapping path="/error/**"/>-->
+            <!--<mvc:exclude-mapping path="/data/open/**"/>-->
+            <!--<mvc:exclude-mapping path="/changePasswd-phone"/>-->
+            <!--<mvc:exclude-mapping path="/sendSms-forgetpwd"/>-->
+            <!--<mvc:exclude-mapping path="/logout"/>-->
+            <!--<bean class="com.wulianedu.common.interceptor.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <mvc:default-servlet-handler/><!--视图解析器-->
 
